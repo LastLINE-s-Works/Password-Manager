@@ -69,10 +69,30 @@ def generate_pass_logic():
         password = ''.join(random.choices(all_characters,k=length))
         print('Your Generated Passaord is: ',password)
 
+def get_phrase_list():
+    def list_files_in_directory(directory):
+    # Check if the directory exists
+        if not os.path.exists(directory):
+            print(f"Directory '{directory}' does not exist.")
+            return
+        
+        # Check if the given path is a directory
+        if not os.path.isdir(directory):
+            print(f"'{directory}' is not a directory.")
+            return
+        
+        # Iterate over files in the directory
+        for filename in os.listdir(directory):
+            file_path = os.path.join(directory, filename)
+            # Check if it's a file
+            if os.path.isfile(file_path):
+                print(filename)
+    list_files_in_directory('data')
 print('a. Add Password: ')
 print('b. Read Password: ')
 print('c. Delete Password: ')
 print('d. Generate Password: ')
+print('e. Get Password Lists: ')
 print('')
 greet = input('Select B/W: ')
 
@@ -87,3 +107,6 @@ if greet == 'c':
 
 if greet == 'd':
     generate_pass_logic()
+
+if greet == 'e':
+    get_phrase_list()
