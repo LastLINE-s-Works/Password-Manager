@@ -1,6 +1,7 @@
 import os
 import sys
 import random
+import string
 
 def add_pass_logic():
     get_pass_name = input('Phrase: ')
@@ -26,9 +27,52 @@ def delete_pass_logic():
          f.close()
          os.remove(f.name)
 
+def generate_pass_logic():
+    alphabets = input('Alphabets (y/n): ')
+    integers = input('Integers (y/n): ')
+    special_chr = input('Special Characters (y/n): ')
+    if alphabets == 'y' and integers == 'y' and special_chr == 'y':
+        all_characters = string.ascii_letters + string.digits + string.punctuation
+        length = int(input("Enter the length of the password: "))
+        password = ''.join(random.choices(all_characters, k=length))
+        print('Your Generated Passaord is: ',password)
+    if alphabets == 'n' and integers == 'n' and special_chr == 'n':
+        print('Password Cant Be Generated')
+    if alphabets == 'y' and integers == 'n' and special_chr=='n':
+        all_characters = string.ascii_letters
+        length = int(input('Enter the length of the password: '))
+        password = ''.join(random.choices(all_characters,k=length))
+        print('Your Generated Passaord is: ',password)
+    if alphabets == 'n' and integers == 'y' and special_chr=='n':
+        all_characters = string.digits
+        length = int(input('Enter the length of the password: '))
+        password = ''.join(random.choices(all_characters,k=length))
+        print('Your Generated Passaord is: ',password)
+    if alphabets == 'n' and integers == 'n' and special_chr == 'y':
+        all_characters = string.punctuation
+        length = int(input('Enter the length of the password: '))
+        password = ''.join(random.choices(all_characters,k=length))
+        print('Your Generated Passaord is: ',password)
+    if alphabets == 'y' and integers == 'y' and special_chr=='n':
+        all_characters = string.ascii_letters + string.digits
+        length = int(input('Enter the length of the password: '))
+        password = ''.join(random.choices(all_characters,k=length))
+        print('Your Generated Passaord is: ',password)
+    if alphabets == 'y' and integers=='n' and special_chr=='y':
+        all_characters = string.ascii_letters + string.punctuation
+        length = int(input('Enter the length of the password: '))
+        password = ''.join(random.choices(all_characters,k=length))
+        print('Your Generated Passaord is: ',password)
+    if alphabets == 'n' and integers=='y' and special_chr=='y':
+        all_characters = string.digits + string.punctuation
+        length = int(input('Enter the length of the password: '))
+        password = ''.join(random.choices(all_characters,k=length))
+        print('Your Generated Passaord is: ',password)
+
 print('a. Add Password: ')
 print('b. Read Password: ')
 print('c. Delete Password: ')
+print('d. Generate Password: ')
 print('')
 greet = input('Select B/W: ')
 
@@ -40,3 +84,6 @@ if greet == 'b':
 
 if greet == 'c':
     delete_pass_logic()
+
+if greet == 'd':
+    generate_pass_logic()
